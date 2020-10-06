@@ -1,0 +1,434 @@
+###	Gunnar lærer seg vim - koronapandemien 2020	###
+###################################################
+
+MOVEMENT:
+	hjkl
+	
+	0 -> start of line
+	$ -> end of line
+
+	G 		-> GOTO line <number>G
+	/<regexp>	-> goto regular expression
+	n, N		-> seek
+	*, #		-> seek for current word
+
+	w -> next WORD
+	e -> END of word
+	b -> BACK a word
+	
+	WEB -> same for BIGWORD
+	
+	() -> jump SENTENCE
+	{} -> jump PARAGRAPH
+	#  -> search for same <regexp>
+	t<char>	-> TO before <char> on line
+	T<char>	-> TO after previous <char> on line
+	f<char>	-> FIND <char> on line
+	F<char>	-> FIND previous <char> on line
+
+EX:
+	:q	-> quit
+	:q!	-> force quit
+	
+	:w	-> WRITE
+	:wq, :x	-> write and quit
+	
+	:e	-> edit file
+	:sp	-> open file, split below
+	:vs	-> open file, split to the right
+	^w^w	-> switch to new window
+	
+	:s/<regexp>/<replacement>	-> SUBSTITUTE on line
+	:%s/<regexp>/<replacement>/g	-> ...in whole document	
+	:g/string/d		-> delete all lines containing regexp
+	:v/string/d		-> delete all lines NOT containing regexp
+	
+	:%s/\cSTALLMAN/Jesus/g		-> case insensitive with \c
+	:norm <commands>			-> example: :norm I<a href = "
+									this is great with shift+v selection
+									(remember to press <ENTER> in the end)
+	:<number>	-> goto line
+	:$		-> goto end of doc, etc.
+	CTRL+D		-> search, tab for autocomplete
+	CTRL+F		-> edit and run EX command history
+
+SIMPLE EDITS:
+	x	-> delete character
+	r	-> REPLACE character
+	J	-> JOIN paragraph
+	
+	d	-> DELETE 
+	dw	-> DELETE to next WORD (combine with move command)
+	dd	-> DELETE LINE
+	D	-> DELETE rest of line
+	.	-> repeat a simple edit command
+
+	u	-> UNDO
+
+INSERT MODE:
+	i	-> INSERT at pointer
+	I	-> at beginning of line
+
+	a	-> APPEND after pointer
+	A	-> at end of line
+
+	s	-> SUBSTITUTE char at pointer and stay in insert
+	S	-> SUBSTITUTE line
+
+	c	-> CHANGE, use as d
+	cw	-> CHANGE WORD
+	
+	30i<regexp>		-> inputs the regexp thirty times
+
+
+VISUAL MODE:
+	v	-> VISUAL MODE
+	^v	-> VISUAL BLOCK MODE
+			to insert in ^v mode: use shift+i
+
+	y	-> YANK
+	d	-> cut
+	
+	P	-> PASTE at
+	p	-> PASTE after
+
+	vit		-> select inside tags
+	vi(c	-> select in parenthesis and replace
+
+
+BINARY EDITING:
+	:%!xxd		-> filters the binary with xxd
+	:%!xxd -r	-> returns the hexdump to binary
+
+
+THREE MODES:
+	operators:
+		c	-> change
+		d	-> delete
+		y	-> yank
+		~	-> swap case
+		gU	-> "go Uppercase"
+		!	-> filter to external program
+		<	-> shift left
+		>	-> shift right (indent? 5>> indents 5 lines)
+		=	-> indent
+	text objects:
+		aw	-> a word 	(word and the space)
+		iw	-> inner word	(just the word)
+		aW	-> a WORD
+		iW	-> inner WORD
+		ap	-> a paragraph
+		ab	-> a bracket
+		at	-> a tag block
+	motions:
+		%	-> first matching paren/bracket
+		+	-> down to first non-blank char of line
+		$	-> to end of line
+		f/F0	-> to next "0" on line
+		t/T0	-> to before next "0" on line
+		]m	-> go to beginning of next method
+		w/W	-> go a word/WORD to the right
+		b/B	-> go a word/WORD to the left
+		e/E	-> go a end of word/WORD to the right
+
+MORE VIM-"WORDS":
+	ct)		-> CHANGE TILL ")". Instead of deleting the whole line
+
+BETTER NAVIGATION:
+	H -> High
+	M -> Middle
+	L -> Low
+
+	zz	-> center around cursor
+	
+	ctrl+y	-> up a line
+	ctrl+e	-> down a line
+	ctrl+u	-> page up
+	ctrl+d	-> page down
+	ctrl+b	-> far up
+	ctrl+f	-> far down
+
+	gd	-> go to definition of function!
+
+	gf	-> go file! Works on path to file, like:
+		~/.bashrc
+
+	ctrl+o	-> go back to previous location
+	ctrl+i	-> go revert to location
+
+BUFFERS:
+	:bn	-> next buffer
+	:bd	-> delete buffer
+
+	:buffers	-> list buffers
+	:b <filename>	-> go to buffer <filename>
+
+WINDOWS (like tmux):
+	<ctrl+w> + s	-> split
+		+ v	-> split vertically
+		+ q	-> close window
+		+ w	-> alternate window
+		+ r	-> rotate windows
+		+ x	-> change viewport ?
+		+ o	-> make ONLY window
+
+		+ +/-	-> resize height
+		+ >/<	-> resize width
+		+ =		-> equalize
+
+	:windo {cmd}	-> execute {cmd} for all windows
+	:sf {FILE}	-> split window and :find {FILE}
+
+	FILE BROWSER:
+		:20vs .		-> makes 20 char wide file browser in split
+
+		:find <file>	-> finds file
+		:vert sf <file>	-> opens file in vert split
+		
+		p		-> preview file
+		<ctrl+w>+z	-> close preview
+		<ctrl+w>+q	-> close window
+
+	TABS:
+		:tabedit <filename>
+		:tab < hmm >
+		gt	-> go to tab
+		gT	-> go to prev tab
+
+	ARGS:
+		arguments are the files with which your instance
+		of vim was opened.
+		
+		:args **/*.py	-> opens all python files in wd
+		:sall		-> split all
+		:vert sall	-> vertical split all
+		:windo difft	-> show diff on all windows
+
+		:vim /FINDME/ %		-> find "FINDME" in current file
+		:vim /FINDME/ ##	-> ... in argument list
+		:cdo s/FINDME/FOUNDYOU/g	-> replace
+
+SETTINGS:
+	:set autoindent		-> autoindent
+	:set tabstop=4		-> tabs become 4 spaces
+	:set number		-> line numbers (nu)
+	:set nonumber
+
+	:set rnu	-> relative linenumber
+	:set ic		-> ignore case, noic
+	:set hls	-> hlsearch
+				Highlighting matches
+	:set is		-> incsearch
+				Highlighting while typing search
+
+
+OUTPUT FILE FROM SELECTION:
+	V	-> line select the output
+	:w FILE	-> becomes :'<,'>w FILE
+	:r	-> paste FILE's content on marker
+
+	:r !ls	-> import output of ls
+
+MOD KEYS IN INSERT MODE:
+	ctrl + r	-> insert text from register
+	ctrl + a	-> last inserted text
+	
+	ctrl + p	-> COMPLETE WORD, "previous"
+	ctrl + n	-> "next"
+
+	ctrl + x	-> some kind of sub "completion mode"?
+		example: in insert mode, autocomplete a filename in wd with ^x ^f
+				ctrl + ]	-> tag
+				ctrl + f	-> filename
+				ctrl + l	-> LINE
+
+	ctrl + v + <key> -> insert terminal code for <key>. Useful for :norm commands
+
+PLUGINS:
+	call plug#begin("~/.vim/plugged")	-> plugin manager, :Plug
+	Plug "junegunn/goyo.vim"			-> center view
+	call plug#end
+
+MACROS:
+	q<char>		-> start recording a macro with the name <char>
+	@<char>		-> replay the macro <char>
+
+FOLDING:
+	:set foldmethod=indent	-> folding based on indentation (good for .py)
+	za		-> toggle current func/class fold
+	zm		-> MORE fold, zM for most
+	zr		-> REDUCE fold, zR for least
+
+MAPPING:
+	:map <key> <keys>	-> make a normal mode macro
+		example: :map <F2> GoDate: <Esc>:r !date<CR>kJ
+			will go (G) to end, add (o) a string incl. the output of !date
+	Other modes:
+	:vmap -> visual		:imap -> insert		:omap -> Operator-pending
+	iab	-> insert mode ABBRIEVATION
+
+	EXAMPLES/IDEAS(test and/or put into .vimrc):
+		:imap <F2> <CR>Date: <Esc>:read !date<CR>kJa
+
+REAL BLACK MAGIC VIM INCANTATIONS:
+	:%s#<[^>]\+>##g			-> Delete HTML tags but keeps text
+	:%s/^\(.*\)\n\1$/\1/	-> Delete a line which appears twice in succession
+	ggVGg?					-> Ciphers text into Rot13
+	:%s/\<./\u&/g			-> Set first letter of each word uppercase
+
+INCREMENT/DECREMENT NUMBER:
+	ctrl+a		->	increment number
+	ctrl+x		-> 	decrement number
+	:put12 =range(1000, 1010)	-> put numbers 1000 to 1010 starting at line 12
+	:for i in range(115.120) | put = '192.168.9.'.i | endfor
+	
+	:set nrformats+=alpha	-> enable increment of letters
+
+REGISTERS:
+	<ctrl+r>+ 0		-> copied ?
+			+ "		-> deleted
+			+ /		-> last search
+			+ :		-> last command
+			+ %		-> filename
+	"ayy			-> yank current line into register a
+	:di[splay]		-> displays contents of all registers (?)
+
+MOVE EXPRESSIONS:
+	:m+			-> move current line one down
+	:t<num>		-> move current to line <num>
+	:t$			-> ... end of file
+
+SESSIONS:
+	A session saves your window/split layout, etc.
+			:mksession session-name.vim
+				makes session
+			vim -S session-name.vim
+				opens session
+
+DIGRAPHS:
+	ctrl+k Mb	-> insert ♭
+	ctrl+k MX	-> insert ♯
+	:digraphs	-> show available diagraphs
+	DEFAULT DIGRAPHS:
+		!'>?-(.:,_/";<029
+		àáâãªăaäaaaäąǎ◎ỏơ
+		ctrl+k =a	-> cyrillic "a"   ЗУKА БЛУAT
+
+FORMATTING:
+	gq	-> operator to format text
+	:center	-> center text
+
+REGEXP:
+	$		->	EOL
+	^		->	BOL
+	*		->	0 or more
+	?		->	0 or 1
+	{n}		->	exactly n
+	{n,}	->	n or more
+	{n,m}	->	between n and m
+	
+	.		->	any except newline
+	[abc]	->	a, b, or c
+	[a-z]	->	a, b, ..., z
+	[^abz]	->	anything but a, b, c
+	\d		->	digit, som 0-9 men også andre språk
+	\s		->	<space>
+	\w		->	word character, not space
+	
+	\n		->	newline
+	\t		->	tab
+	
+	:g/^n/ d		->	delete all lines starting with n
+	:g/^[^0-9]/ d	->	delete all lines not starting with a number
+	:g/^$/ d		->	delete all empty lines
+	:g/hey/d		->	delete all lines containing "hey"
+	:v/hey/d		->	delete all lines not containing "hey"
+							also :g!/dey/d
+
+	^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-z]{2,3}$	-> mail adress
+	^[\w\d._]+@[\w\d]+\.[\w]{2,3}$				-> same, refactored
+
+
+
+awdkj.hawdkjh@dhiauwhdiu.com
+^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-z]{2,3}$
+^[\w\d._]+@[\w\d]+\.[\w]{2,3}$
+371 69 268
+123
+
+
+e7эeへєeєぺeefq♪dd‥∷;1ⅹ4¤ċçð   õòå÷‥∷;ⅹ¤ċçð ¨ ¸ø­
+àínym ă
+
+®℅©k
+
+Ω※※※※※※※※※※※※※※※※※※※※
+∃x(x∩y) ⇒ ∀x(∅≠∈y)
+┏━━━┓
+┣
+┗━━
+
+12
+13
+14
+15
+16
+17
+18
+
+~(/.config/qtile/config.py
+~/TEST/nub_vim.py
+
+appending on line 77
+
+(testtesttsetsetset)[it works]{whatismyname}</href>
+
+
+this-line -Will be pasted <this is the new content> times
+this-line -Will be pasted <hey, I exist> times
+this-line -Will be pasted <newtext> times
+this-line -Will be pasted <newtext> times
+this-line -Will be pasted <newtext> times
+
+AWOIAWDOIHAWD(hey)
+aawd oa wd oaowd ioaiw doia halla aow d
+oaiw doiajoi1j2 oij1 2oidj 1029jd aidj 
+oaiwjd oi1j2oidj9sa8diu23hriukhs fuhs kuhf kuw hf
+1o2ie
+oaawd appending appending appending appending appending appending wd
+TEST appending hey hey
+TEST hey hey hey
+awd
+awdawdawd awd aw d aw dawd 
+
+<html>editing inside the tag</html>
+<html>tag change</html>
+<html>this is very convenient</html>
+<html>editing in tag, very nice</html>
+<html>this awodihawodihawd aowidawoidh oiahw doiahw doihioaowihd</html>
+<html>adw_9 awoidhsoieh_9 sih_9 efohs_9 wh ioelf3 hkslhef</html>
+<html>aihwd oiahwdhiahowidha owihd oaiwhd oiahwoidh aoiwhd</html>
+
+var = "51239";
+<html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html> <html>adw_3 awoidhsoieh_3 sih_3 efohs_3 wh ioelf3 hkslhef</html>
+var = "1";
+var = "2";
+var = "3";
+var = "4";
+var = "5";
+var = "6";
+var = "7";
+var = "8";
+var = "9";
+var = "10";
+var = "11";
+var = "12";
+var = "13";
+var = "14";
+function() {
+	hello from inside func;
+}
+this was made with :r !date
+Wed 29 Apr 2020 07:06:12 PM CEST
+testvar = "34";
+Thu Sep 10 09:02:08 PM CEST 2020
