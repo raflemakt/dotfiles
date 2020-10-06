@@ -179,6 +179,9 @@ WINDOWS (like tmux):
 	:windo {cmd}	-> execute {cmd} for all windows
 	:sf {FILE}	-> split window and :find {FILE}
 
+	You should remap space to do <ctrl+w>:
+	nnoremap <space> <C-W>		-> put this in .vimrc
+
 	FILE BROWSER:
 		:20vs .		-> makes 20 char wide file browser in split
 
@@ -224,7 +227,8 @@ SETTINGS:
 
 OUTPUT FILE FROM SELECTION:
 	V	-> line select the output
-	:w FILE	-> becomes :'<,'>w FILE
+	:w FILE	-> writes to FILE: default is write % to arg,
+				but can write the current marked area to FILE
 	:r	-> paste FILE's content on marker
 
 	:r !ls	-> import output of ls
@@ -252,6 +256,7 @@ PLUGINS:
 MACROS:
 	q<char>		-> start recording a macro with the name <char>
 	@<char>		-> replay the macro <char>
+	300@<char>	-> replay the macro 300 times
 
 FOLDING:
 	:set foldmethod=indent	-> folding based on indentation (good for .py)
@@ -349,7 +354,40 @@ REGEXP:
 	^[\w\d._]+@[\w\d]+\.[\w]{2,3}$				-> same, refactored
 
 
+IN RETROSPECT, MY MOST USED KEYBINDS:
 
+	Keep in mind, many of these work in other unix applications, like
+	"man", "qutebrowser", "rtv".
+
+	MOVE AROUND IN FILE:
+		/<word>	-> seek to the <word> in file
+					use "n" and "N" to move in the list
+		ctrl+d	-> page DOWN
+		ctrl+u	-> page UP
+		gg		-> TOP (home)
+		G		-> EOF (end)
+		ctrl+o, ctrl+i	-> prev and next locations, also works in files
+
+	MOVE SHORTER DISTANCES (within line):
+		/word	-> still the fastest
+		W	-> move forward "big word"
+		B	-> move forward "big 'back'"
+		fa	-> find next "a"
+		Fa	-> find prev "a"
+
+	INSERT/CHANGE:
+		A	-> append to the line
+		r	-> replace one character
+		O	-> insert on line above
+		o	-> insert on line below
+		cw	-> change word
+		dd	-> delete line
+	
+	MISC:
+		:r! <bash command>	-> read bash command, use vim as a pager
+
+
+END OF CHEAT SHEET - SECTION BELOW IS FOR TESTING
 awdkj.hawdkjh@dhiauwhdiu.com
 ^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-z]{2,3}$
 ^[\w\d._]+@[\w\d]+\.[\w]{2,3}$
