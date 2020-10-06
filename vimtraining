@@ -1,5 +1,5 @@
-###	Gunnar lærer seg vim - koronapandemien 2020	###
-###################################################
+""" Gunnar lærer seg vim - koronapandemien 2020
+"""""""""""""""""""""""""""""""""""""""""""""""
 
 MOVEMENT:
 	hjkl
@@ -391,7 +391,6 @@ END OF CHEAT SHEET - SECTION BELOW IS FOR TESTING
 awdkj.hawdkjh@dhiauwhdiu.com
 ^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-z]{2,3}$
 ^[\w\d._]+@[\w\d]+\.[\w]{2,3}$
-371 69 268
 123
 
 
