@@ -12,10 +12,11 @@ colorscheme delek
 nnoremap <space> <C-W>
 
 set nu rnu
+set noswapfile		" swapfiles are more annoying than helpful
 set is ic smartcase	" search: iterative and case insensitive
 set spelllang=en_gb,nn
 set splitbelow splitright
-set tabstop=4
+set tabstop=4 shiftwidth=0
 filetype on
 filetype plugin indent on
 
@@ -26,9 +27,13 @@ map ;l :! pdflatex %<CR><CR> mupdf %
 map ;p :! python %<CR>
 map <F5> :! python %<CR>
 map ;+ :! g++ % -o %:r && ./%:r <CR>
+map ;c :! gcc % -o %:r && ./%:r <CR>
+map ;C :! gcc % -o %:r -lncurses && ./%:r <CR>
 map ;R :! cargo run<CR>
 map ;r :! rustc %<CR>
+map ;l :! clisp %<CR>
 map ;s :source ~/.vimrc<CR>
+map ;æ :%s/$/.pdf/g<CR>
 
 
 """ KEYBINDS
@@ -46,3 +51,4 @@ map \b a[]<Esc>i
 " Netrw file explorer <space>e, default to tree
 let g:netrw_liststyle = 3
 map <space>e	:Lex!<CR>:vertical resize 30<CR>
+map <space>t	:terminal<CR>

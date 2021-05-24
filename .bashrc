@@ -11,23 +11,33 @@ export EDITOR=vim
 [[ $- != *i* ]] && return
 
 # Command promt
-PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]\$ '
+PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+source /usr/share/git/completion/git-prompt.sh
 
 #Gunnar's aliases:
 #################
 alias ls='ls --color=auto'
-alias sudo='sudo '
+alias ip="ip --color=auto"
+alias diff="diff --color=auto"
 alias grep='grep --color=always'
+alias sudo='sudo '
+#alias vimdiff='SUDO_EDITOR=vimdiff sudoedit'
 alias rm='rm -i'
 alias parrot='curl parrot.live'
 alias yts='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
 alias rickroll='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 alias aslak='echo "amund is the REAL noob here"'
 alias topbar='python ~/prosj/heia/topbar/topbar-0.01.py'
-alias lan="ip -4 addr show wlp4s0 | grep --color=never -oP '(?<=inet\s)\d+(\.\d+){3}'"
-alias dwarffortress="dfhack"
+alias lan="ip -4 addr show wlan0 | grep --color=never -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias img="img2txt"
 alias rc="vim ~/.vimrc"
+alias USA="python ~/prosj/quiz/USA/us_states.py"
+alias elements="python ~/prosj/quiz/elements/elements.py"
+alias europe="python ~/prosj/quiz/EU/europe.py"
+alias epoch="python ~/prosj/quiz/epochs/epochs.py"
+alias nubium="python ~/prosj/nubium-alpha/nubium*"
+alias ardutty="stty -F /dev/ttyACM0 cs8 9600 ignbrk -brkint -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts"
 
 #Gunnar's Functions:
 ####################
@@ -65,7 +75,7 @@ export -f duck
 
 #Start python simple http-server on the ip from wifi connection
 pttp(){
-	ip_address=$(ip -4 addr show wlp4s0 | grep --color=never -oP '(?<=inet\s)\d+(\.\d+){3}')
+	ip_address=$(ip -4 addr show wlan0 | grep --color=never -oP '(?<=inet\s)\d+(\.\d+){3}')
 	python3 -m http.server 8000 --bind $ip_address 
 	return
 }
@@ -76,6 +86,14 @@ rec(){
 	ffmpeg -f v4l2 -video_size 640x480 -i /dev/video0 -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac webcam.mp4
 }
 export -f rec 
+
+#LSPCI output for a paragraph, searching the header: ex "lsp Ether"
+lsp(){
+	sed_str="/$1/,/^$/ p"
+	lspci -kvnn | sed -n "$sed_str"
+	return
+}
+export -f lsp
 
 
 #Colorful manuals
