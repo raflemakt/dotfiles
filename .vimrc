@@ -33,6 +33,8 @@ map ;R :! cargo run<CR>
 map ;r :! rustc %<CR>
 map ;l :! clisp %<CR>
 map ;s :source ~/.vimrc<CR>
+
+""" It is not stupid if it ... /appended .pdf on 10423 filenames/
 map ;æ :%s/$/.pdf/g<CR>
 
 

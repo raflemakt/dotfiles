@@ -27,17 +27,18 @@ alias rm='rm -i'
 alias parrot='curl parrot.live'
 alias yts='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
 alias rickroll='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
-alias aslak='echo "amund is the REAL noob here"'
 alias topbar='python ~/prosj/heia/topbar/topbar-0.01.py'
 alias lan="ip -4 addr show wlan0 | grep --color=never -oP '(?<=inet\s)\d+(\.\d+){3}'"
 alias img="img2txt"
 alias rc="vim ~/.vimrc"
+alias ardutty="stty -F /dev/ttyACM0 cs8 9600 ignbrk -brkint -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts"
+
+#Quizes and other python scripts will me made into a proper packages at some point. Until then:
 alias USA="python ~/prosj/quiz/USA/us_states.py"
 alias elements="python ~/prosj/quiz/elements/elements.py"
 alias europe="python ~/prosj/quiz/EU/europe.py"
 alias epoch="python ~/prosj/quiz/epochs/epochs.py"
 alias nubium="python ~/prosj/nubium-alpha/nubium*"
-alias ardutty="stty -F /dev/ttyACM0 cs8 9600 ignbrk -brkint -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts"
 
 #Gunnar's Functions:
 ####################
