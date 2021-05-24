@@ -5,6 +5,7 @@ declare -a paths=(
 "/home/gunnar/.bashrc"
 "/home/gunnar/.tmux.conf"
 "/etc/ssh/ssh_banner"
+"/home/gunnar/Documents/kekaflix/vim/vimtraining"
 )
 
 #copy the dotfiles to the current dir (git repo)

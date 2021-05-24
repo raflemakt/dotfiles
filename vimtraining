@@ -234,6 +234,8 @@ OUTPUT FILE FROM SELECTION:
 	:r !ls	-> import output of ls
 
 MOD KEYS IN INSERT MODE:
+	ctrl + w	-> backspace WORD
+	ctrl + u	-> backspace SENTENCE
 	ctrl + r	-> insert text from register
 	ctrl + a	-> last inserted text
 	
@@ -285,6 +287,7 @@ INCREMENT/DECREMENT NUMBER:
 	ctrl+a		->	increment number
 	ctrl+x		-> 	decrement number
 	:put12 =range(1000, 1010)	-> put numbers 1000 to 1010 starting at line 12
+	:put=range(10,20,2)			-> put numbers 10 to 20, step 2
 	:for i in range(115.120) | put = '192.168.9.'.i | endfor
 	
 	:set nrformats+=alpha	-> enable increment of letters
