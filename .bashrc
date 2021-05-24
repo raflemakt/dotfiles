@@ -33,7 +33,7 @@ alias img="img2txt"
 alias rc="vim ~/.vimrc"
 alias ardutty="stty -F /dev/ttyACM0 cs8 9600 ignbrk -brkint -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts"
 
-#Quizes and other python scripts will me made into a proper packages at some point. Until then:
+#Quizes and other python scripts will be made into proper packages at some point. Until then:
 alias USA="python ~/prosj/quiz/USA/us_states.py"
 alias elements="python ~/prosj/quiz/elements/elements.py"
 alias europe="python ~/prosj/quiz/EU/europe.py"
