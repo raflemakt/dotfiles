@@ -8,6 +8,7 @@
 
 source /usr/share/vim/vim82/defaults.vim
 
+
 colorscheme delek
 nnoremap <space> <C-W>
 
@@ -17,21 +18,25 @@ set is ic smartcase	" search: iterative and case insensitive
 set spelllang=en_gb,nn
 set splitbelow splitright
 set tabstop=4 shiftwidth=0
+set expandtab
+set clipboard=unnamedplus
 filetype on
 filetype plugin indent on
 
 
 """ COMPILE/RUN SCRIPTS
 " These crappy scripts should be rewritten to file extension specific cases.
-map ;l :! pdflatex %<CR><CR> mupdf %
+map ;l :! pdflatex %<CR>
 map ;p :! python %<CR>
 map <F5> :! python %<CR>
 map ;+ :! g++ % -o %:r && ./%:r <CR>
-map ;c :! gcc % -o %:r && ./%:r <CR>
+map ;c :! gcc % -o %:r -lm&& ./%:r <CR>
 map ;C :! gcc % -o %:r -lncurses && ./%:r <CR>
+map <F2> :! make && ./%:r <CR>
 map ;R :! cargo run<CR>
 map ;r :! rustc %<CR>
-map ;l :! clisp %<CR>
+map ;L :! clisp %<CR>
+map ;n :! node %<CR>
 map ;s :source ~/.vimrc<CR>
 
 """ It is not stupid if it ... /appended .pdf on 10423 filenames/
