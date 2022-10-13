@@ -6,10 +6,10 @@
 "     ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 """				 VimRC - Gunnar Myhre 2020
 
-source /usr/share/vim/vim82/defaults.vim
+source /usr/share/vim/vim90/defaults.vim
 
 
-colorscheme delek
+colorscheme delek   " legacy version in ~/.vim/colors
 nnoremap <space> <C-W>
 
 set nu rnu
@@ -32,11 +32,13 @@ map <F5> :! python %<CR>
 map ;+ :! g++ % -o %:r && ./%:r <CR>
 map ;c :! gcc % -o %:r -lm&& ./%:r <CR>
 map ;C :! gcc % -o %:r -lncurses && ./%:r <CR>
-map <F2> :! make && ./%:r <CR>
+"map <F2> :! make && ./%:r <CR>
+map <F2> :! make && make run <CR>
 map ;R :! cargo run<CR>
 map ;r :! rustc %<CR>
 map ;L :! clisp %<CR>
 map ;n :! node %<CR>
+map ;h :! ghc -dynamic % -o %:r && ./%:r <CR>
 map ;s :source ~/.vimrc<CR>
 
 """ It is not stupid if it ... /appended .pdf on 10423 filenames/
