@@ -1,5 +1,8 @@
 #!/usr/bin/sh
 
+# This script will copy all files listed in the "paths"
+# variable to the current working directory.
+
 declare -a paths=(
 "/home/gunnar/.vimrc"
 "/home/gunnar/.bashrc"

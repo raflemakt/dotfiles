@@ -1,21 +1,12 @@
 #!/bin/bash
 
-#################### Gunnar Myhre 2021 ###########################
 #  _   _                 _     _____ _    _ ______ _      _      
 # | | | |               | |   / ____| |  | |  ____| |    | |     
 # | |_| |__   ___  _ __ | | _| (___ | |__| | |__  | |    | |     
 # | __| '_ \ / _ \| '_ \| |/ /\___ \|  __  |  __| | |    | |     
 # | |_| | | | (_) | | | |   < ____) | |  | | |____| |____| |____ 
 #  \__|_| |_|\___/|_| |_|_|\_\_____/|_|  |_|______|______|______|
-######################## ThonkSHELL ##############################
-# My default tmux session with 5 windows:
-# 1:Home  2:Dev  3:More  4:Git  5:IRC
-#
-# Designed for 1080p monitor with 211 col x 58 lines terminal in fullscreen
-#
-# XFCE panel shortcut and keyboard shortcut command:
-# alacritty -t thonkpad-control -o "window.startup_mode=Fullscreen"
-#       --hold -e bash -lc ~/repos/dotfiles/thonkSHELL.sh
+#         - Default TMUX session script - Gunnar Myhre 2021
 
 
 session="thonk"
@@ -58,6 +49,15 @@ if [ $? != 0 ]; then
     
     # Git-window
     tmux new-window -n Git
+    tmux split-window -t Git -v
+    tmux select-window -t Git
+    tmux resize-pane -t 1 -y 6
+
+    tmux select-pane -t 1
+    tmux send-keys 'python /home/gunnar/prosj/useful/git_statusbar.py' C-m
+
+    tmux select-pane -t 2
+    tmux send-keys 'cd /home/gunnar/repos && clear' C-m
 
 
     # IRC-window
@@ -84,7 +84,6 @@ if [ $? != 0 ]; then
     tmux select-window -t Home
     tmux attach-session -t $session
 else
-    # If session already exists, attach to it
     tmux attach-session -t $session
 fi
 
