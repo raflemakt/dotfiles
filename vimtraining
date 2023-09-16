@@ -356,6 +356,10 @@ REGEXP:
 	^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-z]{2,3}$	-> mail adress
 	^[\w\d._]+@[\w\d]+\.[\w]{2,3}$				-> same, refactored
 
+IN PARAGRAPH:
+    gqip            -> gq (format textwidth) in paragraph
+    gUip            -> gU (go uppercase) in paragraph
+
 
 IN RETROSPECT, MY MOST USED KEYBINDS:
 
@@ -388,6 +392,10 @@ IN RETROSPECT, MY MOST USED KEYBINDS:
 	
 	MISC:
 		:r! <bash command>	-> read bash command, use vim as a pager
+
+CTAGS:
+    ctags -R *      -> generate tags file in project root
+    :tag <function_name>    -> go to definition
 
 
 END OF CHEAT SHEET - SECTION BELOW IS FOR TESTING

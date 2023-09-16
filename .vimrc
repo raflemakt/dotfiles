@@ -34,12 +34,14 @@ map ;c :! gcc % -o %:r -lm&& ./%:r <CR>
 map ;C :! gcc % -o %:r -lncurses && ./%:r <CR>
 "map <F2> :! make && ./%:r <CR>
 map <F2> :! make && make run <CR>
+map <F3> :! make flash <CR>
 map ;R :! cargo run<CR>
 map ;r :! rustc %<CR>
 map ;L :! clisp %<CR>
 map ;n :! node %<CR>
 map ;h :! ghc -dynamic % -o %:r && ./%:r <CR>
 map ;s :source ~/.vimrc<CR>
+map ;m :! octave % <CR>
 
 """ It is not stupid if it ... /appended .pdf on 10423 filenames/
 map ;æ :%s/$/.pdf/g<CR>
@@ -61,3 +63,4 @@ map \b a[]<Esc>i
 let g:netrw_liststyle = 3
 map <space>e	:Lex!<CR>:vertical resize 30<CR>
 map <space>t	:terminal<CR>
+

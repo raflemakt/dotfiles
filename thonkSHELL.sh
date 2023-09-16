@@ -84,6 +84,7 @@ if [ $? != 0 ]; then
     tmux select-window -t Home
     tmux attach-session -t $session
 else
+    # Session already exists, attach to it
     tmux attach-session -t $session
 fi
 

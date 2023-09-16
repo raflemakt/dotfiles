@@ -7,6 +7,11 @@
 # Gunnar Myhre - 2019 -
 export EDITOR=vim
 
+# Fix - 20.feb 2023: problemer med kitty-terminalen (vim resize, funksjonsknappar m.m.)
+#export TERM=xterm
+# Fix - 26.mai 2023: problem med tmux --> clear funker ikkje i tty
+#export TERM=linux
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -15,6 +20,10 @@ export EDITOR=vim
 PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 source /usr/share/git/completion/git-prompt.sh
 
+shopt -s histappend
+HISTSIZE=10000
+HISTFILESIZE=50000
+
 #Gunnar's aliases:
 #################
 alias ls='ls --color=auto --hyperlink=auto'
@@ -22,10 +31,9 @@ alias ip="ip --color=auto"
 alias diff="diff --color=auto"
 alias grep='grep --color=always'
 alias sudo='sudo '
-#alias vimdiff='SUDO_EDITOR=vimdiff sudoedit'
 alias rm='rm -i'
 alias parrot='curl parrot.live'
-alias yts='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
+alias yts='yt-dlp --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
 alias rickroll='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
 alias topbar='python ~/prosj/useful/topbar.py'
 alias lan="ip -4 addr show wlan0 | grep --color=never -oP '(?<=inet\s)\d+(\.\d+){3}'"
@@ -33,13 +41,13 @@ alias img="img2txt"
 alias rc="vim ~/.vimrc"
 alias ardutty="stty -F /dev/ttyACM0 cs8 9600 ignbrk -brkint -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts"
 alias hn="elinks news.ycombinator.com"
-#alias thonkshell="bash ~/prosj/useful/thonkSHELL.sh"
 alias thonkshell="bash ~/repos/dotfiles/thonkSHELL.sh"
 alias sr="bash /home/gunnar/TEST/serenity/Meta/serenity.sh run"
 alias rune="python /home/gunnar/TEST/shaitten/osrsge_dashboard.py"
 alias elbereth="cat /home/gunnar/Documents/elbereth.txt"
 alias varda="elbereth"
 alias ntnuvpn="sudo openconnect vpn.ntnu.no"
+alias cpmake="cp /home/gunnar/prosj/makefiles/c_3_current/Makefile Makefile_new"
 
 
 #Quizes and other python scripts will be made into proper packages at some point. Until then:
@@ -94,7 +102,8 @@ export -f pttp
 
 #Record with webcam. todo: take arguments, audio etc. It currently overwrites old captures
 rec(){
-	ffmpeg -f v4l2 -video_size 640x480 -i /dev/video0 -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac webcam.mp4
+    filename="webcam-$(date +%F_%H%M%S).mp4"
+	ffmpeg -f v4l2 -video_size 640x480 -i /dev/video0 -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac "$filename"
 }
 export -f rec 
 
@@ -109,6 +118,7 @@ export -f lsp
 
 #Colorful manuals
 man() {
+    GROFF_NO_SGR=1 \
     LESS_TERMCAP_md=$'\e[01;31m' \
     LESS_TERMCAP_me=$'\e[0m' \
     LESS_TERMCAP_se=$'\e[0m' \
@@ -143,3 +153,5 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFFFFFFF" #white
     clear #for background artifacting
 fi
+
+export QSYS_ROOTDIR="/home/gunnar/Downloads/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
