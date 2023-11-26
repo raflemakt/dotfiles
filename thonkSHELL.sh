@@ -49,14 +49,6 @@ if [ $? != 0 ]; then
     
     # Git-window
     tmux new-window -n Git
-    tmux split-window -t Git -v
-    tmux select-window -t Git
-    tmux resize-pane -t 1 -y 6
-
-    tmux select-pane -t 1
-    tmux send-keys 'python /home/gunnar/prosj/useful/git_statusbar.py' C-m
-
-    tmux select-pane -t 2
     tmux send-keys 'cd /home/gunnar/repos && clear' C-m
 
 
