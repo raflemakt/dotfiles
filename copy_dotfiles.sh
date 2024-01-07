@@ -7,8 +7,9 @@ declare -a paths=(
 "/home/gunnar/.vimrc"
 "/home/gunnar/.bashrc"
 "/home/gunnar/.tmux.conf"
-"/etc/ssh/ssh_banner"
+"/home/gunnar/.config/elinks/elinks.conf"
 "/home/gunnar/Documents/kekaflix/vim/vimtraining"
+"/etc/ssh/ssh_banner"
 )
 
 #copy the dotfiles to the current dir (git repo)
